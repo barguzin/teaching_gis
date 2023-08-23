@@ -1,4 +1,4 @@
-# Installation Instructions 
+# Installation Instructions for Intro Workshop on SQL
 
 Last updated on: 2023-08-22 
 
@@ -26,16 +26,3 @@ Go to the [official DBeaver download page](https://dbeaver.io/download/) and dow
 
 --- 
 
-## PostgreSQL + PostGIS 
-
-### Windows and MacOS
-
-Follow instructions from [Introduction to PostGIS](https://postgis.net/workshops/postgis-intro/installation.html)
-
----
-
-## Downloading Data
-
-We will be using the data from [Introduction to PostGIS workshop](https://postgis.net/workshops/postgis-intro/).
-
----
