@@ -1,6 +1,6 @@
 # Introduction to SQL 
 
-## Familiarizing with the graphical user interface (GUI) 
+## 1. Familiarizing with the graphical user interface (GUI) 
 
 1. Open DBeaver 
 2. Help > Create Sample Database
@@ -14,13 +14,13 @@
 6. Right-click on the 'DBeaver SAmple Database' > View Diagram. This shows you all the information about entities in the table. 
 7. Right-click on the 'DBeaver SAmple Database' > SQL Editor > New SQL Script. 
 
-## Writing Scripts 
+## 2. Writing Scripts 
 
 While there are many tutorials available online on learning SQL this tutorial will focus on the basics and filtering, as these are more often used in GIS software for filtering spatial features, including for selections based on attributes and definition queries. 
 
 ---
 
-### Your first query 
+### 2.1 Your first query 
 
 ```sql
 SELECT 
@@ -31,7 +31,7 @@ FROM
 
 > What does this query do? 
 
-#### Selecting specific columns
+#### 2.1.1 Selecting specific columns
 
 We can specify which columns we want by including their names in the select portion of the query: 
 
@@ -46,7 +46,7 @@ Notice how we can change the order of the columns in the select statement.
 
 > How many records are selected with this statement? 
 
-#### Sorting records 
+#### 2.1.2 Sorting records 
 
 We can sort records using 'ORDER BY', where the sort type is denoted with ASC (Ascending) and DESC (descending). We can also use 'LIMIT' clause to limit the number of rows on the screen.  
 
@@ -59,7 +59,7 @@ ORDER BY LastName DESC
 LIMIT 5; 
 ```
 
-### Select unique values 
+### 2.2 Select unique values 
 
 Unique values can be selected with the 'DISTINCT' function. 
 
@@ -74,9 +74,9 @@ FROM
 
 ---
 
-### Filtering records
+### 2.3 Filtering records
 
-#### Filtering character variables 
+#### 2.3.1 Filtering character variables 
 
 The records are filtered using the 'WHERE' clause, followed by logical operators. 
 
@@ -101,7 +101,7 @@ WHERE
 
 > List customers residing in USA. 
 
-#### Filtering numeric variables 
+#### 2.3.2 Filtering numeric variables 
 
 ```sql
 SELECT 
@@ -123,7 +123,7 @@ WHERE
     total > 5 AND BillingCountry = 'Belgium' 
 ```
 
-#### Combining several conditions for filtering 
+#### 2.3.3 Combining several conditions for filtering 
 
 ```sql
 SELECT 
@@ -141,7 +141,7 @@ WHERE
 
 ---
 
-### Aggregating Data 
+### 2.4 Aggregating Data 
 
 SQL allows to use the so-called 'aggregate functions' (AVG, SUM, COUNT, MAX, MIN) to calculate summary statistic for groups of rows / variables. 
 
@@ -170,7 +170,7 @@ FROM
 
 ---
 
-### Aggregating Data with Groups 
+### 2.5 Aggregating Data with Groups 
 
 There are many questions in data analytics that require you to generate summaries for groups of objects (e.g. post offices in the State of Iowa, coffee shops in the city of Santa Barbara, average customer spending per restaurant). We can use the GROUP BY function to help with this query. 
 
@@ -190,7 +190,7 @@ In the example above our grouping variable is *BillingCity*. Grouping variables 
 
 --- 
 
-### Joining Data 
+### 2.6 Joining Data 
 
 There are different types of join: left join, right join, outer join, inner join. Imagine we wanted to find the emails of the customers with the highest invoice amounts for our email list and special discounts / offers. However, the invoice table does not have customers' emails. Therefore, we will need to join the customer data to the invoice data. This is easily accomplished using a JOIN operator and ON proposition to specify which fields / columns we would like to join the two tables on. Since both invoice and customer tables share CustomerId key, we can use it for a join. 
 
@@ -203,7 +203,7 @@ LEFT JOIN customer c
 	ON i.CustomerId  = c.CustomerId; 
 ```
 
-#### Advanced join with aggregate 
+#### 2.6.1 Advanced join with aggregate 
 
 If we wanted to get only the top five paying customers we can combine aggregate functions and a join. 
 
