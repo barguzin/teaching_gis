@@ -9,6 +9,12 @@ This workshop will demonstrate some functionality of spatial querying in modern 
 
 ---
 
+## Installing libspatial gui 
+
+Follow instructions for Windows and Mac here: https://github.com/ucdavisdatalab/Spatial_SQL/blob/master/Install.md
+
+---
+
 ## Getting Data 
 
 We will be working with OpenStreetMap data compiled by Mateusz Ilba and available on [OSF page](https://osf.io/2ym95/). Please navigate to[this page](https://osf.io/2ym95/files/osfstorage) and download the file named *db_small.sqlite*. 
@@ -61,7 +67,7 @@ You can read more about SpatiaLite on the [official website](https://www.gaia-gi
 
 ## Connecting the database 
 
-### Connect db to DBeaver 
+### Connect db to DBeaver (Issues running spatial queries on Windows)
 
 1. Database > New Database Connection 
 2. Choose SQLite > Next > Path: Open (and navigate to your .sqlite file that you just saved in the previous steps)
@@ -83,13 +89,66 @@ You can read more about SpatiaLite on the [official website](https://www.gaia-gi
 
 ## Running queries on db 
 
-1. Open DBeaver, right-click on db > SQL Editor > New SQL script 
-
-2. Run the simple select statement on buildings_points table 
-
 ```sql
 SELECT *
 from buildings_points bp ;
 ```
 
+### Check for textual representation of geometry 
+
+```sql
+select 
+   ST_ASTEXT(Geometry) 
+from 
+   roads_lines;
+```
+
 > How is 'Geometry' stored? 
+
+### Check for coordinate reference system 
+
+```sql
+select 
+   ST_SRID(Geometry) 
+from 
+   roads_lines;
+```
+
+> What is the SRID number? Find the units of measurement and some other info on epsg.io
+
+### Calculate distance of roads 
+
+```sql
+select 
+	name, st_length(Geometry)
+from roads_lines;
+```
+
+> Take this further and calculate top 10 lengthy road segments in Krakov. Hint: you will need to sort on the length and filter out records that do not have names! 
+
+### Count the number of road segments by fclass
+
+```sql
+SELECT 
+   fclass, count(osm_id) as cnt_segments
+FROM 
+   roads_lines
+GROUP BY fclass; 
+```
+
+> Add the total length of all road segments to this table. *HINT: use ST_LENGTH() function*. 
+
+> Calculate average *maxspeed* by fclass. 
+
+> Calculate total number of bridges in data. 
+
+> Calculate total number of tunnels in data (0) 
+
+### Spatial Join 
+
+```sql
+SELECT 
+	*
+FROM roads_lines rl, (select * from landuse_polygon where osm_id='4519924') as lp
+WHERE ST_INTERSECTS(rl.Geometry, lp.geometry);
+```
