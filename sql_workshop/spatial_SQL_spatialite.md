@@ -1,6 +1,6 @@
 # Running Spatial Queries on SQLite - Spatialite Stack 
 
-This workshop will demonstrate some functionality of spatial querying in modern geodatabases. 
+This workshop will demonstrate some functionality of spatial querying in modern geodatabases. The workshop was inspired by another [Spatialite workshop](https://github.com/ucdavisdatalab/Spatial_SQL/tree/master) created by Michele Tobias & Naomi Kalman. 
 
 ## Prerequisites
 
